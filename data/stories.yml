@@ -1,0 +1,412 @@
+version: "3.1"
+
+stories:
+  # - story: happy path
+  #   steps:
+  #   - intent: greet
+  #   - action: utter_greet
+  #   - intent: mood_great
+  #   - action: utter_happy
+
+  # - story: sad path 1
+  #   steps:
+  #   - intent: greet
+  #   - action: utter_greet
+  #   - intent: mood_unhappy
+  #   - action: utter_cheer_up
+  #   - action: utter_did_that_help
+  #   - intent: affirm
+  #   - action: utter_happy
+
+  # - story: get close restaurant
+  #   steps:
+  #   - intent: greet
+  #   - action: utter_greet
+  #   - intent: name_entry
+  #     entities:
+  #     - name: khairi
+  #   - slot_was_set:
+  #     - name: khairi
+  #   - action: action_get_name
+  #   - intent: restaurant-search
+  #   - action: utter_state_check
+  #   - intent: get-location
+  #     entities:
+  #     - state : monastir
+  #   - slot_was_set:
+  #     - state: mahdia
+  #   - action: action_get_loc
+  #   - action: utter_ask_notifications
+  #   - intent: affirm
+  #   - action: action_ask_notifications
+
+  # - story: tell restaurant
+  #   steps:
+  #   - intent: greet
+  #   - action: utter_greet
+  #   - intent: mood_great
+  #   - action: utter_happy
+  #   - intent: restaurant-search
+  #   - action: utter_restaurant
+
+  # - story: sad path 3
+  #   steps:
+  #   - intent: greet
+  #   - action: utter_greet
+  #   - intent: mood_unhappy
+  #   - action: utter_cheer_up
+  #   - action: utter_did_that_help
+  #   - intent: deny
+  #   - action: utter_goodbye
+
+  # - story: get_user_informations(happy path)
+  #   steps:
+  #   - intent: greet
+  #   - action: utter_greet_from_bot
+  #   - intent: affirm
+  #   - action: utter_ask_first_name
+  #   - intent: getFirstName
+  #   entities:
+  #   - name: khairi
+  # - slot_was_set:
+  #   - name: bob
+  # - action: utter_ask_last_name
+  # - intent: getLastName
+  #   entities:
+  #   - lastName: Smith
+  # - slot_was_set:
+  #   - lastName: Smith
+  # - action: utter_ask_state
+  # - intent: getZone
+  #   entities:
+  #   - state: monastir
+  # - slot_was_set:
+  #   - state: monastir
+  # - action: utter_ask_email
+  # - intent: getEmail
+  #   entities:
+  #   - email: john.doe@example.com
+  # - slot_was_set:
+  #   - email: john.doe@example.com
+  # - action: utter_ask_gender
+  # - intent: getGender
+  #   entities:
+  #   - gender: male
+  # - slot_was_set:
+  #   - gender: male
+  # - action: utter_continue_or_skip
+  # - intent: affirm
+  # - action: utter_ask_age
+  # - intent: getAge
+  #   entities:
+  #   - age: 25
+  # - slot_was_set:
+  #   - age: 25
+  # - action: utter_ask_phone
+  # - intent: getPhoneNumber
+  #   entities:
+  #   - phone: 123-456-7890
+  # - slot_was_set:
+  #   - phone: 123-456-7890
+  # - action: utter_ask_salary
+  # - intent: getSalary
+  #   entities:
+  #   - salary: 20000dt
+  # - slot_was_set:
+  #   - salary: 20000dt
+  # - action: utter_ask_social_status
+  # - intent: getSocialStatus
+  #   entities:
+  #   - socialStatus: single
+  # - slot_was_set:
+  #   - socialStatus: single
+  # - action: utter_thank_user
+  # - action: action_submit
+
+  # - story: get_user_informations(sad path)
+  #   steps:
+  #   - intent: greet
+  #   - action: utter_greet_from_bot
+  #   - intent: affirm
+  #   - action: utter_ask_first_name
+  #   - intent: getFirstName
+  #     entities:
+  #     - name: khairi
+  #   - slot_was_set:
+  #     - name: bob
+  #   - action: action_ask_first_name
+  #   - intent: getLastName
+  #     entities:
+  #     - lastName: Smith
+  #   - slot_was_set:
+  #     - lastName: Smith
+  #   - action: action_ask_last_name
+  #   - intent: getZone
+  #     entities:
+  #     - state: monastir
+  #   - slot_was_set:
+  #     - state: monastir
+  #   - action: action_ask_state
+  #   - intent: getEmail
+  #     entities:
+  #     - email: john.doe@example.com
+  #   - slot_was_set:
+  #     - email: john.doe@example.com
+  #   - action: action_ask_email
+  #   - intent: getGender
+  #     entities:
+  #     - gender: male
+  #   - slot_was_set:
+  #     - gender: male
+  #   - action: action_ask_gender
+  #   - intent: deny
+  #   - action: utter_thank_user
+
+  # - story: Collect user information
+  #   steps:
+  #   - action: utter_greet_from_bot
+  #   - intent: inform
+  #     entities:
+  #     - name: "John"
+  #     - lastName: "Doe"
+  #     - state: "California"
+  #     - email: "johndoe@example.com"
+  #     - gender: "male"
+  #     - age: "30"
+  #     - phone: "1234567890"
+  #     - salary: "50000"
+  #     - socialStatus: "single"
+  #   - action: user_information_form
+  #   - active_loop: user_information_form
+  #   - action: user_information_form
+  #   - active_loop: null
+  #   - slot_was_set:
+  #     - requested_slot: null
+  #   # - utterance: utter_submit_information
+
+  # stories:
+  # - story: beginning of flow
+  #   steps:
+  #   - intent: greet
+  #   - action: action_ask_user_question
+  #   - checkpoint: check_asked_question
+
+  # - story: handle user affirm
+  #   steps:
+  #   - checkpoint: check_asked_question
+  #   - intent: affirm
+  #   - action: action_handle_affirmation
+  #   - checkpoint: check_flow_finished
+
+  # - story: handle user deny
+  #   steps:
+  #   - checkpoint: check_asked_question
+  #   - intent: deny
+  #   - action: action_handle_denial
+  #   - checkpoint: check_flow_finished
+
+  # - story: finish flow
+  #   steps:
+  #   - checkpoint: check_flow_finished
+  #   - intent: goodbye
+  #   - action: utter_goodbye
+
+  
+  
+
+
+  # - story: restaurant_recommendation
+  #   steps:
+  #     - intent: request_place
+  #       # Start the restaurant recommendation process
+  #     - slot_was_set:
+  #       - requested_slot: restaurant
+  #     - action: restaurant_form
+  #     - active_loop: restaurant_form
+  #     - active_loop: null
+  #     - action: action_get_place_by_type
+  #     - action: utter_last_message
+
+  # - story: place_recommendation interruption
+  #   steps:
+  #     - intent: request_place
+  #       # Start the restaurant recommendation process
+  #     - action: place_form
+  #     - active_loop: place_form
+  #     - intent: interruption
+  #     - action: action_get_place_by_type
+  #     - action: utter_last_message
+  #     - action: action_deactivate_loop
+  #     - active_loop: null
+
+        
+  # - story: beach_recommendation
+  #   steps:
+  #     - intent: requestBeach
+  #       # Start the restaurant recommendation process
+  #     - action: beach_form
+  #     - active_loop: beach_form
+  #     - active_loop: null
+  #     - action: utter_beach_slots
+
+
+  # - story: request something
+  #   steps:
+  #     # - action: utter_greet_from_bot
+  #     - intent: request_recommendation
+  #     - action: recommendation_form
+  #     - active_loop: recommendation_form
+  #     - active_loop: null
+  #     - action: action_get_place_by_type
+  #     - action: utter_last_message
+
+  - story: request place by type story
+    steps:
+      - intent: Request_place_recommendation
+      # - action: utter_continue_or_skip
+      - action: action_fetch_place
+      
+      
+
+  # - story: request affirm  place by type story
+  #   steps:
+  #     - intent: Request_place_recommendation
+  #     - action: action_fetch_place
+  #     - action: utter_continue_or_skip
+  #     - intent: affirm
+  #     - action: gather_user_info_form
+  #     - active_loop: gather_user_info_form
+  #     - active_loop: null
+  #     - action: utter_thank_user
+  #     - action: utter_last_message
+
+  - story: "request place by type happy story"
+    steps:  
+      - intent: affirm
+      - action: gather_user_info_form
+      - active_loop: gather_user_info_form 
+      - active_loop: null
+      - action: action_fetch_place
+      - action: utter_thank_user
+      - action: utter_last_message
+
+
+  - story: "request place by type sad story"
+    steps:  
+      - intent: deny
+      - action: action_fetch_place
+      - action: utter_last_message
+  # End conversation if user denies
+  # - story: initial restaurant request
+  #   steps:
+  #     - intent: greet
+  #     - action: utter_greet_from_bot
+  #     - 
+
+
+  # - story: request restaurant by type story
+  #   steps:
+  #     - intent: Request_restaurant_recommendation
+  #     - action: action_fetch_restaurant
+  #     - action: utter_last_message
+
+  # - story: Activate entertainment_form
+  #   steps:
+  #     - intent: request_location_recommendation
+  #     - action: action_get_place_by_location
+
+  # - story: Activate entertainment_form
+  #   steps:
+  #     - intent: request_location_type_recommendation
+  #     - action: action_get_place_by_type
+
+
+
+
+
+
+
+
+
+
+      # - action: utter_last_message
+  # - story: test
+  #   steps:
+  #     - intent: greet
+  #     - action: utter_take_bet
+
+  # - story: entertainment_recommendation_initial
+  #   steps:
+  #     - action: utter_greet_from_bot
+  #     - intent: request_place
+  #     - slot_was_set:
+  #       - requested_slot: entertainment
+  #     - action: entertainment_form
+  #     - active_loop: entertainment_form
+  #     - active_loop: null
+  #     - action: action_get_place_by_type
+  #     - action: utter_last_message
+
+
+
+
+
+
+  
+# - story: beginning of flow
+#   steps:
+#   - intent: greet
+#   - action: action_ask_user_question
+#   - checkpoint: check_asked_question
+
+# - story: handle user affirm
+#   steps:
+#   - checkpoint: check_asked_question
+#   - intent: affirm
+#   - action: action_handle_affirmation
+#   - checkpoint: check_flow_finished
+
+# - story: handle user deny
+#   steps:
+#   - checkpoint: check_asked_question
+#   - intent: deny
+#   - action: action_handle_denial
+#   - checkpoint: check_flow_finished
+
+# - story: finish flow
+#   steps:
+#   - checkpoint: check_flow_finished
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - story: French cuisine
+#   steps:
+#   - intent: inform
+#   - slot_was_set:
+#     - cuisine: french
+
+# - story: Vietnamese cuisine
+#   steps:
+#   - intent: inform
+#   - slot_was_set:
+#     - cuisine: vietnamese
+
+# - story: collecting table info
+#   steps:
+#   # ... other story steps
+#   - intent: inform
+#     entities:
+#     - people: 3
+#   - slot_was_set:
+#     - people: 3
+#   - action: action_book_table
+
+# - story: too many people at the table
+#   steps:
+#   # ... other story steps
+#   - intent: inform
+#     entities:
+#     - people: 9
+#   - slot_was_set:
+#     - people: 9
+#   - action: action_explain_table_limit

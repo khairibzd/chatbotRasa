@@ -1,0 +1,7 @@
+tests/*
+models/*
+actions/*
+**/*.md
+myev/*
+results/*
+.rasa/*

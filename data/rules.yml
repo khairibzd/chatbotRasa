@@ -1,0 +1,157 @@
+version: "3.1"
+
+rules:
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Greet user
+    steps:
+      - intent: greet
+      - action: utter_greet_from_bot
+
+  - rule: Say 'I am a bot' anytime the user challenges
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  # - rule: Welcome User
+  #   steps:
+  #   - action: utter_greet
+
+  # - rule: Activate form
+  #   steps:
+  #   - intent: affirm
+  #   - action: user_information_form
+  #   - active_loop: user_information_form
+
+  # - rule: Activate restaurant_form
+  #   steps:
+  #     - intent: request_place
+  #     - action: restaurant_form
+  #     - active_loop: restaurant_form
+
+  - rule: Activate  user gather information form
+    steps:
+      - intent: affirm
+      - action: gather_user_info_form
+      - active_loop: gather_user_info_form
+
+  # - rule: Activate beach_form
+  #   steps:
+  #     - intent: requestBeach
+  #     - action: beach_form
+  #     - active_loop: beach_form
+
+  - rule: request place by type story
+    steps:
+      - intent: Request_place_recommendation
+      # - action: utter_continue_or_skip
+      - action: action_fetch_place
+   
+
+  # - rule: request restaurant by type story
+  #   steps:
+  #     - intent: Request_restaurant_recommendation
+  #     - action: action_fetch_restaurant
+  #     - action: utter_last_message
+
+  # - rule: Activate form
+  #   steps:
+  #     - intent: request_location_type_recommendation
+  #     - action: action_get_place_by_type
+  
+
+
+
+  # - rule: Submit restaurant form
+  #   condition:
+  #     # Condition that form is active.
+  #     - active_loop: restaurant_form
+  #   steps:
+  #     # Form is deactivated
+  #     - action: restaurant_form
+  #     - active_loop: null
+  #     - slot_was_set:
+  #         - requested_slot: null
+  #     # The actions we want to run when the form is submitted.
+  #     # - action: utter_submit
+  #     - action: action_get_place_by_type
+  #     - action: utter_last_message
+
+  # - rule: Submit place form interruption
+  #   condition:
+  #     - active_loop: place_form
+  #   steps:
+  #     - intent: interruption
+  #     - action: action_get_place_by_type
+
+  #     - action: utter_last_message
+  #     - action: action_deactivate_loop
+  #     - active_loop: null
+  - rule: Submit user gather info form
+    condition:
+      - active_loop: gather_user_info_form
+    steps:
+      - action: gather_user_info_form
+      - active_loop: null
+      - slot_was_set:
+        - requested_slot: null
+      - action: action_fetch_place
+      - action: utter_thank_user
+      - action: utter_last_message
+
+
+
+  - rule: request place by type sad story
+    steps:  
+      - intent: deny
+      - action: action_fetch_place
+      - action: utter_last_message
+
+  # - rule: Submit entertainment  form
+  #   condition:
+  #     # Condition that form is active.
+  #     - active_loop: entertainment_form
+  #   steps:
+  #     # Form is deactivated
+  #     - action: entertainment_form
+  #     - active_loop: null
+  #     - slot_was_set:
+  #         - requested_slot: null
+  #     - action: action_get_place_by_type
+  #     - action: utter_last_message
+
+  # - rule: Submit beach form
+  #   condition:
+  #     # Condition that form is active.
+  #     - active_loop: beach_form
+  #   steps:
+  #     # Form is deactivated
+  #     - action: beach_form
+  #     - active_loop: null
+  #     - slot_was_set:
+  #         - requested_slot: null
+  #     # The actions we want to run when the form is submitted.
+  #     # - action: utter_submit
+  #     - action: utter_beach_slots
+
+  # - rule: Interruption in user gather form
+  #   # Condition that form is active.
+  #   condition:
+  #     - active_loop: gather_user_info_form
+  #   steps:
+  #     - action: utter_continue_or_skip
+  #     - intent: deny
+  #     - action: utter_last_message
+  #     - action: action_deactivate_loop
+  #     - active_loop: null
+
+  - rule: Only say `hey with name` when the user provided a name
+    condition:
+      - slot_was_set:
+          - name: true
+    steps:
+      - intent: greet_name
+      - action: utter_greet

@@ -1,0 +1,425 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - requestBeach
+  - greet_name
+  - Request_place_recommendation
+  - request_location_recommendation
+  - gather_user_information
+  - interruption
+  - request_recommendation
+  - Request_restaurant_recommendation
+actions:
+  - action_fetch_place
+  - action_fetch_restaurant
+entities:
+  - name
+  # - lastName
+  # - email
+  # - gender
+  - age
+  # - phone
+  # - salary
+  - dny
+  - aff
+  - socialStatus
+  - cuisine
+  - party_size
+  - service
+  - location
+  - amenity
+  - budget
+  - meal_type
+  - Restauranttype
+  - activity
+  - beachType
+  - type
+  - experience
+  - placeActivity
+  - locationPlace
+  - entertainmentType
+  - entertainmentTheme
+  - atmosphere
+  - personType
+# i think we can use this when we have intents that similar !
+# slots:
+#   slot_name:
+#     type: text
+#     mappings:
+#     - type: from_text
+#       intent: intent_name
+#       not_intent: excluded_intent
+
+slots:
+  convId:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  convName:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: type
+  entertainmentType:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: entertainmentType
+  entertainmentTheme:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: entertainmentTheme
+  atmosphere:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: atmosphere
+  experience:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: experience
+  placeActivity:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: placeActivity
+  locationPlace:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: locationPlace
+  name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: name
+  beachType:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: beachType
+  activity:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: activity
+  cuisine:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: cuisine
+  location:
+    type: text
+    influence_conversation: true #here it can influence the oonversation when you want to replay the user to a specefic location not in general
+    mappings:
+      - type: from_entity
+        entity: location
+  Restauranttype:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: Restauranttype
+  personType:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: personType
+  aff:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: aff
+  dny:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: dny 
+  # gender:
+  #   type: text
+  #   influence_conversation: false
+  #   mappings:
+  #     - type: from_entity
+  #       entity: gender
+  age:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: age
+  # phone:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #     - type: from_entity
+  #       entity: phone
+  # salary:
+  #   type: text
+  #   influence_conversation: true
+  #   mappings:
+  #     - type: from_entity
+  #       entity: salary
+  socialStatus:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: socialStatus
+
+forms:
+  recommendation_form:
+    required_slots:
+      - type
+  gather_user_info_form:
+    required_slots:
+      - age 
+      - socialStatus 
+      - personType 
+ 
+responses:
+  # utter_greet:
+  # - text: "Hey there! How are you doing? Welcome to the BestBot your friendly restaurant recommendation chatbot.
+  #  I'm here to assist you in finding the best restaurants based on your preferences. Whether you're craving a specific
+  #   cuisine or looking for a cozy spot, I've got you covered! Just let me know your preferences, and I'll provide you
+  #    with personalized recommendations. So, how can I help you today?"
+
+  # utter_restaurant:
+  # - text: "in which address"
+
+  # utter_state_check:
+  # - text: "Please Enter the State name you wish to eat  : "
+
+  utter_ask_name:
+    - text: "May I have the pleasure of knowing your name?"
+
+  # utter_ask_state:
+  #   - text: "What state or region are you currently residing in?"
+
+  # utter_ask_last_name:
+  #   - text: "Could you share your last name with me, please?"
+
+  # utter_ask_email:
+  #   - text: "Mind sharing your email address so we can stay connected?"
+
+  # utter_ask_gender:
+  #   - text: "Could you let me know your gender identity?"
+
+  utter_ask_age:
+    - text: "May I inquire about your age "
+
+  # utter_ask_phone:
+  #   - text: "Could you provide your contact number for any future communications?"
+  utter_last_message:
+    - text: "Would you like to explore any other options"
+
+  # utter_ask_salary:
+  #   - text: "If you're comfortable, could you share your salary range?"
+  utter_ask_cuisine:
+    - text: "What type of cuisine are you in the mood for , chinese, Italian , suhshi, Mexican, or something else?"
+
+  # utter_ask_service:
+  #   - text: "Do you prefer dine-in, takeout, or delivery?"
+
+  # utter_ask_amenity:
+  #   - text: "Are there any specific amenities you're looking for, like outdoor seating or live music?"
+
+  utter_ask_type:
+    - text: "what kind of place do you like"
+
+  # utter_ask_meal_type:
+  #   - text: "Are you looking for a restaurant for lunch, dinner, or another meal type?"
+
+  # utter_ask_occasion:
+  #   - text: "Is there a specific occasion for this dining experience, like a date night or a special celebration?"
+
+  utter_ask_location:
+    - text: "Where would you like to be located? Could you specify the city or area?"
+
+  # utter_ask_party_size:
+  #   - text: "How many people will be dining with you?"
+
+  # utter_ask_budget:
+  #   - text: "What is your budget for this dining experience?"
+
+  # utter_ask_dietary_preference:
+  #   - text: "Do you have any dietary preferences or restrictions?"
+  utter_ask_personType:
+    - text: "Are you a vegetarian , meet eater or something else"
+  utter_ask_socialStatus:
+    - text: "How would you describe your social status or background?"
+  utter_slots_values:
+    - text: "alrigth you want a {cuisine} cuisine and {type} type and located in {location}"
+  utter_thank_user:
+    - text: Fantastic! Thanks for sharing all that information"
+  utter_ask_continue:
+    - text: "do you want to continue"
+  utter_continue_or_skip:
+    - text: "before we dive into recomendation, could you kindly provide us with some details about you to make your recommendation more specefic"
+      buttons:
+        - title: Yes
+          payload: 'Yes'
+        - title: No
+          payload: 'No'
+
+  utter_greet_from_bot:
+    - text: "Hello there! 👋 Welcome to DealDiscover! I'm here to help you find the perfect recommendations tailored just for you. What can I assist you with today"
+      buttons:
+        - title: "🍽️ Restaurants"
+          payload: 'restaurant'
+        - title: "🏞️ Places to Spend the Day"
+          payload: 'place'
+        - title: "🎉 Hotels"
+          payload: 'hotel'
+        - title: "🎉 Parks"
+          payload: 'park'
+
+
+  utter_ask_beachType:
+    - text: "What type of beach are you looking for? For example, do you prefer sandy beaches, rocky shores, or maybe something more secluded?"
+
+  utter_beach_slots:
+    - text: "Sure thing! So you're looking for a {beachType} beach, located in {location}, and you're interested in {activity}."
+  utter_ask_activity:
+    - text: "Are there any specific activities you'd like to do at the beach? For instance, swimming, sunbathing, snorkeling?"
+  # utter_take_bet:
+  #   - custom:
+  #       blocks:
+  #         - type: section
+  #           text:
+  #             text: "Make a bet on when the world will end:"
+  #             type: mrkdwn
+  #           accessory:
+  #             type: datepicker
+  #             initial_date: "2019-05-21"
+  #             placeholder:
+  #               type: plain_text
+  #               text: Select a date
+  # utter_cheer_up:
+  # - text: "Here is something to cheer you up:"
+  #   image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  # utter_did_that_help:
+  # - text: "Did that help you?"
+
+  # utter_happy:
+  # - text: "Great, carry on!"
+
+  # utter_ask_notifications:
+  # - text: Do you want notifications?
+  #   buttons:
+  #     - title: Yes
+  #       payload: /affirm
+  #     - title: No
+  #       payload: /deny
+  utter_ask_atmosphere:
+    - text: "Do you have any preferences regarding the location or atmosphere of the entertainment venue? For instance, indoor or outdoor or bustling city center?"
+  utter_ask_entertainmentTheme:
+    - text: "Are there any specific genres or themes you prefer? Such as action-packed or educational?"
+  utter_ask_entertainmentType:
+    - text: "What type of entertainment are you interested in? For example, live music, theater, museums, or sports events?"
+  utter_ask_experience:
+    - text: "What type of experience are you looking for? For example, adventure, relaxation, cultural exploration?"
+  utter_ask_locationPlace:
+    - text: "Do you have any specific location preferences, such as near the coast, in the mountains, or in a city?"
+  utter_ask_placeActivity:
+    - text: "Are there any activities or amenities you prioritize, like hiking trails, water sports or  historical sites?"
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+  utter_greet:
+    - text: "Hey, {name}. How are you?"
+    - text: "Hey, {name}. How is your day going?"
+
+  # utter_greet_again:
+  #   - condition:
+  #       - type: slot
+  #         name: name
+  #         value: true
+  #     text: "Hey, {name}. Nice to see you again! How are you?"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false
+# slots:
+#   departure_city:
+#     type: text
+#     mappings:
+#     - type: from_entity
+#       entity: city
+#       role: from
+#     - type: from_entity
+#       entity: city
+#   arrival_city:
+#     type: text
+#     mappings:
+#     - type: from_entity
+#       entity: city
+#       role: to
+#     - type: from_entity
+#       entity: city
+#   arrival_date:
+#     type: any
+#     mappings:
+#     - type: from_entity
+#       entity: date
+# forms:
+#   your_form:
+#     required_slots:
+#     - departure_city
+#     - arrival_city
+#     - arrival_date
+
+# this response is whith butoons
+# responses:
+#   utter_greet:
+#   - text: "Hey! How are you?"
+#     buttons:
+#     - title: "great"
+#       payload: "/mood_great"
+#     - title: "super sad"
+#       payload: "/mood_sad"
+
+#here a buttons with entity extraction
+# responses:
+# utter_greet:
+# - text: "Hey! Would you like to purchase motor or home insurance?"
+#   buttons:
+#   - title: "Motor insurance"
+#     payload: '/inform{{"insurance":"motor"}}'
+#   - title: "Home insurance"
+#     payload: '/inform{{"insurance":"home"}}'
+
+# passing multiple entity is possible we can ask the user for restaurant spesification and he just click to buttom don't need to rnter a messagte
+# '/intent_name{{"entity_type_1":"entity_value_1", "entity_type_2": "entity_value_2"}}'

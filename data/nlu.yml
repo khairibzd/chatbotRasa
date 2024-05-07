@@ -1,0 +1,327 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternojon
+
+  - intent: interruption
+    examples: |
+      - i don't want 
+      - its enougth
+      - its many question 
+      - just recommend me 
+      - stop 
+      - its okey
+      - Stop questions, give suggestion.
+      - Hold on, recommendation please.
+      - That's enough, recommend something.
+      - Pause chat, suggest options.
+      - Skip questions, recommend.
+      - Enough said, recommend please.
+      - Show recommendations already.
+      - Cut to the chase, recommend.
+    
+  - intent: greet_name
+    examples: |
+      - hey My name is [khairi](name)
+      - hi [khairi](name:khairi) this side
+      - good morning It's [khairi](name:khairi)
+      - hey [khairi](name:khairi) is my name
+      - my name is [demo](name)
+      - hey I am [khairi](name)
+
+  # - intent: request_recommendation
+  #   examples: |
+  #     - Can you recommend something?
+  #     - I'm looking for a recommendation. Any suggestions?
+  #     - Could you recommend me something?
+  #     - Do you have any recommendations?
+  #     - I need a recommendation. What do you suggest?
+  #     - Got any recommendations for me?
+  #     - Looking for recommendations. What do you think?
+  #     - What would you recommend?
+  #     - In need of a recommendation. Any ideas?
+  #     - Recommendations, please?
+
+
+
+  # - intent: request_place
+  #   examples: |
+     
+  #     - Can you recommend a family-friendly place for a day out in Carthage?
+  #     - Where can I find the best place nearby to spend the day in Sidi Bou Said?
+  #     - Any hidden gem restaurant you would recommend for a day trip in Matmata?
+  #     - I want to explore something new. Any unique hotel you can suggest for a day visit in Dougga?
+  #     - Which restaurant in Tunisia is suitable for all ages in Djerba?
+  #     - I'm an adventure seeker. Any thrilling beach you know of for a day of excitement in Tozeur?
+      
+  
+
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+
+  - intent: affirm
+    examples: |
+      - [Yes](aff)
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+      - Yes, that sounds good.
+      - Great, I'll try that.
+      - Perfect, thank you.
+      - Sounds like a plan.
+      - Yes, I'll go with that suggestion.
+      - I agree, let's go there.
+
+  - intent: deny
+    examples: |
+      - [No](dny)
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really
+      - No, that's not what I'm looking for.
+      - I don't think that's the right choice.
+      - Maybe something else.
+      - I'd rather not.
+      - Not really what I had in mind.
+      - I'll pass on that suggestion.
+
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
+
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
+
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+      
+
+  - intent: initial_request
+    examples: |
+      - suggest a recommendation
+      
+
+  - intent: Request_place_recommendation
+    examples: |
+      - a [casual](Restauranttype) dining 
+      - a [casual](Restauranttype)  food 
+      - recommend [casual](Restauranttype)  
+      - recommend me a  [Italian](Restauranttype) food
+      - i want a [Italian](Restauranttype) place
+      - I'm craving [Italian](Restauranttype) 
+      - a want[romantic](Restauranttype) 
+      - recommend a [romantic](Restauranttype) food
+      - suggest a [romantic](Restauranttype) place
+      - a [fast food](Restauranttype)
+      - maybe a [Mexican](cuisine) 
+      - good [vegan](cuisine)
+      - Can you recommend a family-friendly [place](type) for a day out?
+      - Where can I find the best [place](type) nearby to spend the day?
+      - Any hidden gem [place](type) you would recommend for a day trip ?
+      - I want to explore something new. Any unique [place](type) you can suggest for a day visit ?
+      - Which [place](type) is suitable for all ages?
+      - I'm an adventure seeker. Any thrilling [place](type) you know of for a day of excitement ?
+      - Where can I find the best [park](type) nearby to spend the day?
+      - Any hidden gem [park](type) you would recommend for a day trip ?
+      - I want to explore something new. Any unique [park](type) you can suggest for a day visit ?
+      - Which [park](type) is suitable for all ages?
+      - I'm an adventure seeker. Any thrilling [park](type) you know of for a day of excitement ?
+      - [park](type)
+      - Can you suggest a family-friendly [restaurant](type) for dinner?
+      - Any hidden gem [restaurant](type) that you would recommend?
+      - Can you recommend a budget-friendly [restaurant](type) with good reviews?
+      - [restaurant](type)
+      - [place](type)
+      - I'm a foodie and love experimental dishes. Any avant-garde [restaurant](type) you know of?
+      - Can you recommend a family-friendly [entertainment](type) venue for a day out?
+      - Where can I find the best [entertainment](type) venue nearby to spend the day?
+      - Any hidden gem [entertainment](type) venue you would recommend for a day trip?
+      - I want to explore something new. Any unique [entertainment](type) venue you can suggest for a day visit?
+      - Which [entertainment](type) venue is suitable for all ages?
+      - Can you suggest a budget-friendly [entertainment](type) venue with good amenitie?
+      - Are there any recommended [entertainment](type) venues n?
+      - I'm an adventure seeker. Any thrilling [entertainment](type) venue you know of for a day of excitement?
+      - Could you recommend a family-friendly [hotel](type) for our upcoming trip?
+      - Where can I find the best [hotels](type) nearby to spend the night ?
+      - Do you know of any hidden gem [hotels](type) you would recommend for a stay?
+      - I'm looking to explore something new. Can you suggest a unique [hotel](type) for a stay?
+      - Which [hotel](type) would you say is suitable for guests of all ages?
+      - Can you recommend some beaches?
+      - Which [beach](type) do you suggest visiting ?
+      - What are the best [beach](type)?
+      - any recommendations for [beach](type)?
+      - Which [beach](type) are worth visiting?
+      - Can you suggest some must-visit [beach](type)?
+      - restaurant nearby in [tunisia](location)
+      - [sousse](location)
+      - in [hammamet](location)
+      - spot in [mahdia](location).
+      - in the area in [Bizerte](location)
+      - in [monastir](location).
+      - in the [sousse](location) area
+      - in the [tunisia](location)
+      - in the [La Marsa](location) area.
+      - in the [Sidi Bou Said](location) area
+      - joint nearby
+      - in [monastir](location).
+      - in the [Ariana](location) area
+
+  - synonym: credit
+    examples: |
+      - credit card account
+      - credit account
+  - synonym: Italian
+    examples: |
+      - italian
+      - italien
+
+
+  - intent: check_balance
+    examples: |
+      - how much do I have on my [credit card account]{"entity": "account", "value": "credit"}
+      - how much do I owe on my [credit account]{"entity": "account", "value": "credit"}
+
+  - intent: gather_user_information
+    examples: |
+      - My name is [khairi](name)
+      - [khairi](name:khairi) this side
+      - It's [khairi](name:khairi)
+      - [khairi](name:khairi) is my name
+      - [Rahul](name)
+      - It is [Tom](name)
+      - My name is [Bob](name)
+      - name is [Rajesh](name)
+      - my name is [demo](name)
+      - I am [khairi](name)
+      - My last name is [bouzid](lastName)
+      - [dehmani](lastName) is my family name
+      - It's [dehmani](lastName)
+      - [bouzid](lastName) is my last name
+      - [bouzid](lastName) is my surname
+      - My family name is [bouzid](lastName)
+      - My email is [khairibouzid@gmail.com](email)
+      - Contact me at [khairibouzid@gmail.com](email)
+      - You can reach me at [khairibouzid@gmail.com(email)
+      - I am [male](gender)
+      - My gender is [female](gender)
+      - Identify as [male](gender)
+      - I am [female](gender) by gender
+      - Identify as [male](gender)
+      - I'm [female](gender)
+      - I identify as [male](gender)
+      - I am [25](age) years old
+      - My age is [30](age)
+      - [21](age) is my age
+      - I'm [40](age) years old
+      - [28](age) is my current age
+      - I am [22](age) years of age
+      - My age is [35](age)
+      - I'm [19](age) years old
+      - My phone number is [123-456-7890](phone)
+      - Contact me at [123-456-7890](phone)
+      - You can reach me at [123-456-7890](phone)
+      - [123-456-7890](phone) is my contact number
+      - My salary is [20000dt](salary) per year
+      - I earn [20000dt](salary) annually
+      - [20000dt](salary) is my yearly income
+      - My salary is [30000dt](salary) per annum
+      - I make [30000dt](salary) per year
+      - I am [single](socialStatus)
+      - My social status is [married](socialStatus)
+      - [divorced](socialStatus) is my current status
+      - I identify as [widowed](socialStatus)
+      - I am [engaged](socialStatus)
+      - [in a relationship](socialStatus) is my social status
+      - I'm currently [single](socialStatus)
+      - [married](socialStatus) is my relationship status
+      - I'm [in a committed relationship](socialStatus)
+      - My social status is [divorced](socialStatus)
+      - I'm [widowed](socialStatus)
+      - i'm a [vegetarian](personType)
+      - i'm a [meet eater](personType)
+
+# ## intent:thankyou
+# - Thank You.
+# - ThankYou
+# - Thanks
+# - Thanks for helping.
+# - Appreciate the work.
+# - Appreciate the efforts.
+
+
+
+#  - good [vegan](cuisine) restaurant in the [Medina of Tunis](location)
+#         - I'm in the mood for [Thai](cuisine) cuisine in the [La Marsa](location) area.
+#         - a [romantic](Restauranttype) restaurant in the [Sidi Bou Said](location) area
+#         - [fast food](Restauranttype) joint nearby
+#         - a [sandy](beachType) in [Hammamet](location) for [swimming](activity)
+#         - I'm looking for a [secluded](beachType) in [Djerba](location) where I can [relax](activity).
+#         - any [rocky](beachType) beaches near [Bizerte](location) for [surfing](activity)
+#         - I want to visit a [family-friendly](beachType) in [Monastir](location) with [playground](activity) for kids.
+#         - a [tropical](beachType) beach in [Sousse](location) [snorkel](activity)
+#         - a [dog-friendly](beachType) beach in [Nabeul](location) for [playing fetch](activity)
+#         - I'm interested in a [busy](beachType) beach in [La Marsa](location) where I can [sunbathe](activity) and [people-watch](activity).
+#         - a [remote](beachType) in [Kelibia](location) for [hiking](activity) and [birdwatching](activity)
+#         - a [coral reef](beachType) in [Tabarka](location) suitable for [diving](activity).
+#         - i want an [adventure](experience)
