@@ -16,9 +16,16 @@ intents:
   - interruption
   - request_recommendation
   - Request_restaurant_recommendation
+  - request_trip
+  - mood_angry
+  - mood_tired
+  - mood_lonely
+  - mood_bored
 actions:
   - action_fetch_place
   - action_fetch_restaurant
+  - action_fetch_trip
+  - action_fetch_placee
 entities:
   - name
   # - lastName
@@ -48,6 +55,9 @@ entities:
   - entertainmentTheme
   - atmosphere
   - personType
+  - trip
+
+
 # i think we can use this when we have intents that similar !
 # slots:
 #   slot_name:
@@ -74,6 +84,12 @@ slots:
     mappings:
       - type: from_entity
         entity: type
+  trip:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: trip
   entertainmentType:
     type: text
     influence_conversation: true
@@ -204,13 +220,19 @@ forms:
       - age 
       - socialStatus 
       - personType 
- 
+  trip_form:
+    required_slots:
+      - location
+
+
+
+
 responses:
-  # utter_greet:
-  # - text: "Hey there! How are you doing? Welcome to the BestBot your friendly restaurant recommendation chatbot.
-  #  I'm here to assist you in finding the best restaurants based on your preferences. Whether you're craving a specific
-  #   cuisine or looking for a cozy spot, I've got you covered! Just let me know your preferences, and I'll provide you
-  #    with personalized recommendations. So, how can I help you today?"
+  utter_greet:
+    - text: "Hey there! How are you doing? Welcome to the BestBot your friendly restaurant recommendation chatbot.
+              I'm here to assist you in finding the best restaurants based on your preferences. Whether you're craving a specific
+               cuisine or looking for a cozy spot, I've got you covered! Just let me know your preferences, and I'll provide you
+                with personalized recommendations. So, how can I help you today?"
 
   # utter_restaurant:
   # - text: "in which address"
@@ -227,9 +249,12 @@ responses:
   # utter_ask_last_name:
   #   - text: "Could you share your last name with me, please?"
 
-  # utter_ask_email:
-  #   - text: "Mind sharing your email address so we can stay connected?"
-
+  utter_mood_tired:
+    - text: "I understand, feeling tired can be draining finding a comfortable place to rest is crucial. Consider checking an hotel"
+  utter_mood_lonely:
+    - text: "Loneliness can weigh heavily, especially when fatigue sets in. Finding a cozy place to rest can help. Have you thought about staying in a Sahara place?"
+  utter_mood_bored:
+    - text: "Boredom can creep in when exhaustion takes over. Finding a comfortable place to recharge is vital. How about considering a historical place in sousse?"
   # utter_ask_gender:
   #   - text: "Could you let me know your gender identity?"
 
@@ -255,6 +280,8 @@ responses:
   utter_ask_type:
     - text: "what kind of place do you like"
 
+  utter_youarewelcome:
+    - text: "You're very welcome."
   # utter_ask_meal_type:
   #   - text: "Are you looking for a restaurant for lunch, dinner, or another meal type?"
 
@@ -273,13 +300,13 @@ responses:
   # utter_ask_dietary_preference:
   #   - text: "Do you have any dietary preferences or restrictions?"
   utter_ask_personType:
-    - text: "Are you a vegetarian , meet eater or something else"
+    - text: "Are you a vegetarian , meat eater or something else"
   utter_ask_socialStatus:
     - text: "How would you describe your social status or background?"
   utter_slots_values:
     - text: "alrigth you want a {cuisine} cuisine and {type} type and located in {location}"
   utter_thank_user:
-    - text: Fantastic! Thanks for sharing all that information"
+    - text: Fantastic! Thanks for sharing all that information, here your recommendation enjoy it ! "
   utter_ask_continue:
     - text: "do you want to continue"
   utter_continue_or_skip:
@@ -297,11 +324,12 @@ responses:
           payload: 'restaurant'
         - title: "🏞️ Places to Spend the Day"
           payload: 'place'
-        - title: "🎉 Hotels"
+        - title: "🏨 Hotels"
           payload: 'hotel'
-        - title: "🎉 Parks"
+        - title: "🌳 Parks"
           payload: 'park'
-
+        - title: "✈️ Trip"
+          payload: 'trip'
 
   utter_ask_beachType:
     - text: "What type of beach are you looking for? For example, do you prefer sandy beaches, rocky shores, or maybe something more secluded?"
@@ -323,15 +351,15 @@ responses:
   #             placeholder:
   #               type: plain_text
   #               text: Select a date
-  # utter_cheer_up:
-  # - text: "Here is something to cheer you up:"
-  #   image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
 
-  # utter_did_that_help:
-  # - text: "Did that help you?"
+  utter_did_that_help:
+    - text: "Did that help you?"
 
-  # utter_happy:
-  # - text: "Great, carry on!"
+  utter_happy:
+    - text: "Great, carry on!"
 
   # utter_ask_notifications:
   # - text: Do you want notifications?
@@ -358,9 +386,11 @@ responses:
   utter_iamabot:
     - text: "I am a bot, powered by Rasa."
 
-  utter_greet:
-    - text: "Hey, {name}. How are you?"
-    - text: "Hey, {name}. How is your day going?"
+  utter_mood_angry:
+    - text: "I'm sorry to hear that you're feeling this way. It's important to acknowledge and address your emotions. Sometimes, taking a moment for yourself can help. How about visiting a serene place where you can relax and unwind?"
+
+  # utter_greet:
+  #   - text: "Hey, {name}. How are you?"
 
   # utter_greet_again:
   #   - condition:

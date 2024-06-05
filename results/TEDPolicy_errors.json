@@ -1,0 +1,26 @@
+[
+  {
+    "text": "recommend me a trip",
+    "entities": [
+      {
+        "start": 15,
+        "end": 19,
+        "value": "trip",
+        "entity": "trip"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Can you recommend a family-friendly place for a day out?",
+    "entities": [
+      {
+        "start": 36,
+        "end": 41,
+        "value": "place",
+        "entity": "type"
+      }
+    ],
+    "predicted_entities": []
+  }
+]

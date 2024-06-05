@@ -1,22 +1,7 @@
 version: "3.1"
 
 stories:
-  # - story: happy path
-  #   steps:
-  #   - intent: greet
-  #   - action: utter_greet
-  #   - intent: mood_great
-  #   - action: utter_happy
 
-  # - story: sad path 1
-  #   steps:
-  #   - intent: greet
-  #   - action: utter_greet
-  #   - intent: mood_unhappy
-  #   - action: utter_cheer_up
-  #   - action: utter_did_that_help
-  #   - intent: affirm
-  #   - action: utter_happy
 
   # - story: get close restaurant
   #   steps:
@@ -49,15 +34,6 @@ stories:
   #   - intent: restaurant-search
   #   - action: utter_restaurant
 
-  # - story: sad path 3
-  #   steps:
-  #   - intent: greet
-  #   - action: utter_greet
-  #   - intent: mood_unhappy
-  #   - action: utter_cheer_up
-  #   - action: utter_did_that_help
-  #   - intent: deny
-  #   - action: utter_goodbye
 
   # - story: get_user_informations(happy path)
   #   steps:
@@ -215,58 +191,56 @@ stories:
   
 
 
-  # - story: restaurant_recommendation
-  #   steps:
-  #     - intent: request_place
-  #       # Start the restaurant recommendation process
-  #     - slot_was_set:
-  #       - requested_slot: restaurant
-  #     - action: restaurant_form
-  #     - active_loop: restaurant_form
-  #     - active_loop: null
-  #     - action: action_get_place_by_type
-  #     - action: utter_last_message
-
-  # - story: place_recommendation interruption
-  #   steps:
-  #     - intent: request_place
-  #       # Start the restaurant recommendation process
-  #     - action: place_form
-  #     - active_loop: place_form
-  #     - intent: interruption
-  #     - action: action_get_place_by_type
-  #     - action: utter_last_message
-  #     - action: action_deactivate_loop
-  #     - active_loop: null
-
-        
-  # - story: beach_recommendation
-  #   steps:
-  #     - intent: requestBeach
-  #       # Start the restaurant recommendation process
-  #     - action: beach_form
-  #     - active_loop: beach_form
-  #     - active_loop: null
-  #     - action: utter_beach_slots
 
 
-  # - story: request something
-  #   steps:
-  #     # - action: utter_greet_from_bot
-  #     - intent: request_recommendation
-  #     - action: recommendation_form
-  #     - active_loop: recommendation_form
-  #     - active_loop: null
-  #     - action: action_get_place_by_type
-  #     - action: utter_last_message
+# - story: place_recommendation interruption
+#   steps:
+#     - intent: request_place
+#       # Start the restaurant recommendation process
+#     - action: place_form
+#     - active_loop: place_form
+#     - intent: interruption
+#     - action: action_get_place_by_type
+#     - action: utter_last_message
+#     - action: action_deactivate_loop
+#     - active_loop: null
 
-  - story: request place by type story
-    steps:
-      - intent: Request_place_recommendation
-      # - action: utter_continue_or_skip
-      - action: action_fetch_place
+# - story: restaurant_recommendation
+#   steps:
+#     - intent: request_place
+#       # Start the restaurant recommendation process
+    # - slot_was_set:
+    #   - requested_slot: restaurant
+    # - action: restaurant_form
+    # - active_loop: restaurant_form
+    # - active_loop: null
+    # - action: action_get_place_by_type
+    # - action: utter_last_message
       
-      
+# - story: beach_recommendation
+#   steps:
+#     - intent: interruption
+      # Start the restaurant recommendation process
+    # - action: beach_form
+    # - active_loop: beach_form
+    # - active_loop: null
+    # - action: utter_beach_slots
+# - story: request something
+#   steps:
+#     # - action: utter_greet_from_bot
+#     - intent: request_recommendation
+#     - action: recommendation_form
+#     - active_loop: recommendation_form
+#     - active_loop: null
+#     - action: action_get_place_by_type
+#     - action: utter_last_message
+# - story: request place by type story
+#   steps:
+#     - intent: Request_place_recommendation
+#     # - action: utter_continue_or_skip
+#     - action: action_fetch_place
+#     # - action: utter_last_message
+    
 
   # - story: request affirm  place by type story
   #   steps:
@@ -280,41 +254,65 @@ stories:
   #     - action: utter_thank_user
   #     - action: utter_last_message
 
-  - story: "request place by type happy story"
-    steps:  
-      - intent: affirm
-      - action: gather_user_info_form
-      - active_loop: gather_user_info_form 
-      - active_loop: null
-      - action: action_fetch_place
-      - action: utter_thank_user
-      - action: utter_last_message
+# - story: "request place by type happy story"
+#   steps:  
+#     - intent: affirm
+#     - action: gather_user_info_form
+#     - active_loop: gather_user_info_form 
+#     - active_loop: null
+#     - action: utter_thank_user
+#     - action: action_fetch_place
+#     - action: utter_last_message
+- story: request trip
+  steps:  
+    - intent: request_trip
+    - action: trip_form
+    - active_loop: trip_form 
+    - active_loop: null
+    - action: action_fetch_trip
+    - action: utter_last_message
+- story: "request place by type sad story"
+  steps:  
+    - intent: deny
+    - action: action_fetch_place
+    - action: utter_last_message
+
+- story: request place by type story
+  steps:
+    - intent: Request_place_recommendation
+    # - action: utter_continue_or_skip
+    - action: action_fetch_place
 
 
-  - story: "request place by type sad story"
-    steps:  
-      - intent: deny
-      - action: action_fetch_place
-      - action: utter_last_message
-  # End conversation if user denies
-  # - story: initial restaurant request
-  #   steps:
-  #     - intent: greet
-  #     - action: utter_greet_from_bot
-  #     - 
+- story: replay to angry user
+  steps:
+    - intent: mood_angry
+    - action: utter_mood_angry
+    - action: action_fetch_placee
 
 
-  # - story: request restaurant by type story
-  #   steps:
-  #     - intent: Request_restaurant_recommendation
-  #     - action: action_fetch_restaurant
-  #     - action: utter_last_message
+- story: replay to tired user
+  steps:
+    - intent: mood_tired
+    - action: utter_mood_tired
+    - action: action_fetch_placee
 
-  # - story: Activate entertainment_form
-  #   steps:
-  #     - intent: request_location_recommendation
-  #     - action: action_get_place_by_location
 
+- story: replay to  lonely user
+  steps:
+    - intent: mood_lonely
+    - action: utter_mood_lonely
+    - action: action_fetch_placee
+
+- story: replay to bored user
+  steps:
+    - intent: mood_bored
+    - action: utter_mood_bored
+    - action: action_fetch_placee
+# - tory: Activate entertainment_form
+#   steps:
+#     - intent: request_location_recommendation
+#     - action: action_get_place_by_location
   # - story: Activate entertainment_form
   #   steps:
   #     - intent: request_location_type_recommendation

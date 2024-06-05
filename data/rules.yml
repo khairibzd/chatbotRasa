@@ -15,7 +15,11 @@ rules:
     steps:
       - intent: bot_challenge
       - action: utter_iamabot
-
+      
+  - rule: thankyou
+    steps:
+      - intent: thankyou
+      - action: utter_youarewelcome
   # - rule: Welcome User
   #   steps:
   #   - action: utter_greet
@@ -37,6 +41,14 @@ rules:
       - intent: affirm
       - action: gather_user_info_form
       - active_loop: gather_user_info_form
+
+
+
+  - rule: Activate  trip form
+    steps:
+      - intent: request_trip
+      - action: trip_form
+      - active_loop: trip_form
 
   # - rule: Activate beach_form
   #   steps:
@@ -98,11 +110,20 @@ rules:
       - active_loop: null
       - slot_was_set:
         - requested_slot: null
-      - action: action_fetch_place
       - action: utter_thank_user
+      - action: action_fetch_place
       - action: utter_last_message
 
-
+  - rule: Submit trip form
+    condition:
+      - active_loop: trip_form
+    steps:
+      - action: trip_form
+      - active_loop: null
+      - slot_was_set:
+        - requested_slot: null
+      - action: action_fetch_trip
+      - action: utter_last_message
 
   - rule: request place by type sad story
     steps:  
@@ -110,7 +131,9 @@ rules:
       - action: action_fetch_place
       - action: utter_last_message
 
-  # - rule: Submit entertainment  form
+
+
+    # - rule: Submit entertainment  form
   #   condition:
   #     # Condition that form is active.
   #     - active_loop: entertainment_form
@@ -155,3 +178,27 @@ rules:
     steps:
       - intent: greet_name
       - action: utter_greet
+
+  - rule: replay to angry user
+    steps:
+      - intent: mood_angry
+      - action: utter_mood_angry
+      - action: action_fetch_placee
+
+  - rule: replay to tired user
+    steps:
+      - intent: mood_tired
+      - action: utter_mood_tired
+      - action: action_fetch_placee
+
+  - rule: replay to  lonely user
+    steps:
+      - intent: mood_lonely
+      - action: utter_mood_lonely
+      - action: action_fetch_placee
+  
+  - rule: replay to bored user
+    steps:
+      - intent: mood_bored
+      - action: utter_mood_bored
+      - action: action_fetch_placee

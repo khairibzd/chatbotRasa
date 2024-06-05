@@ -1,0 +1,10 @@
+[
+  {
+    "text": "my name is demo",
+    "intent": "gather_user_information",
+    "intent_prediction": {
+      "name": "greet_name",
+      "confidence": 0.6281856894493103
+    }
+  }
+]
