@@ -104,8 +104,10 @@ class ActionGetPlaceByType(Action):
                    selected_place = random.choice(places)
                    place_name = selected_place.get('name')
                    place_image = selected_place.get('placeImage')
+                   place_description = selected_place.get('description')
                    dispatcher.utter_message(text=place_name)
                    dispatcher.utter_message(image=place_image)
+                   dispatcher.utter_message(text=place_description)
                else:
                    dispatcher.utter_message(text="No places found matching your criteria.")
         except Exception as e:
@@ -115,7 +117,81 @@ class ActionGetPlaceByType(Action):
 
         # Set all slots to null
         return []
-    
+
+class ActionGetTripBylocation(Action):
+    def name(self) -> Text:
+        return "action_fetch_trip"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        try:
+            location = tracker.get_slot('location')
+            client = MongoClient("mongodb+srv://khairiBZ1:kingragnar@cluster0.r4fmbkw.mongodb.net/")
+            db = client["test"]
+            collection = db["places"]
+            places = collection.find({"location": location})
+            places = list(places)
+            if places:
+                # Shuffle the places to get random selection
+                random.shuffle(places)
+                # Select up to 3 random places or less if there are fewer places
+                for selected_place in places[:3]:
+                    place_name = selected_place.get('name')
+                    place_image = selected_place.get('placeImage')
+                    dispatcher.utter_message(text=place_name)
+                    dispatcher.utter_message(image=place_image)
+            else:
+                dispatcher.utter_message(text="No places found matching your criteria.")
+
+        except Exception as e:
+            print('Error fetching place data:', e)
+            dispatcher.utter_message(text="An error occurred while fetching place data.")
+            raise e  
+       
+        # Set all slots to null
+        return []
+
+
+
+class ActionFetchPlace(Action):
+    def name(self) -> Text:
+        return "action_fetch_placee"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        try:
+            intent = tracker.get_intent_of_latest_message()
+            place_name = None
+            
+            if intent == "mood_angry":
+                place_name = "Sousse Beach"
+            elif intent == "mood_tired":
+                place_name = "El Mouradi Skanes"
+            elif intent == "mood_lonely":
+                place_name = "14. Tozeur"
+            elif intent == "mood_bored":
+                place_name = "Ribat of Sousse"
+
+            if place_name:
+                client = MongoClient("mongodb+srv://khairiBZ1:kingragnar@cluster0.r4fmbkw.mongodb.net/")
+                db = client["test"]
+                collection = db["places"]
+                places = collection.find({"name": place_name})
+                places = list(places)
+                if places:
+                    place = places[0]
+                    place_image = place.get('placeImage')
+                    place_description = place.get('description')
+                    dispatcher.utter_message(text=place_description)
+                    dispatcher.utter_message(image=place_image)
+                else:
+                    dispatcher.utter_message(text="No places found matching your criteria.")
+            else:
+                dispatcher.utter_message(text="No matching place found for this mood.")
+        except Exception as e:
+            print('Error fetching place data:', e)
+            dispatcher.utter_message(text="An error occurred while fetching place data.")
+            raise e  
+
+        return []
 #       # Clear slots
 # class ActionGetRestaurantByType(Action):
 #     def name(self) -> Text:
